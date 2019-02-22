@@ -7,35 +7,40 @@
 	var answer = [];
 	var lettersGuessed = [];
 	var guess;
-
-
-	// ARRAY OF RANDOM WORDS
-	var words = [
-		"COMET",
-		"EARTH",
-		"GALAXY",
-		"INTERSTELLAR",
-		"COSMOS",
-		"NEBULA",
-		"NOVA",
-		"SUPERNOVA",
-		"EXTRATERRESTIAL",
-		"UNIVERSE"
-	];
 	
-	// ARRAY OF HINT IMAGES (probably way to do this in an object?)
-	var hintImages = [
-		'assets/images/comet.jpg',
-		'assets/images/earth.jpg',
-		'assets/images/galaxy.jpg',
-		'assets/images/interstellar.jpg',
-		'assets/images/cosmos.jpg',
-		'assets/images/nebula.jpg',
-		'assets/images/nova.jpg',
-		'assets/images/supernova.jpg',
-		'assets/images/extraterrestial.jpg',
-		'assets/images/universe.jpg',
-	];
+	// ARRAY OF WORDS AND IMAGES
+	var words = [
+		{ 	word: "COMET",
+			img: 'assets/images/comet.jpg',
+			},
+		{ 	word: "EARTH",
+			img: 'assets/images/earth.jpg',
+			},
+		{ 	word: "GALAXY",
+			img: 'assets/images/galaxy.jpg',
+			},
+		{	word: "INTERSTELLAR",
+			img: 'assets/images/interstellar.jpg',
+			},
+		{	word: "COSMOS",
+			img: 'assets/images/cosmos.jpg',
+			},
+		{	word: "NEBULA",
+			img: 'assets/images/nebula.jpg',
+			},
+		{	word: "NOVA",
+			img: 'assets/images/nova.jpg',
+			},
+		{	word: "SUPERNOVA",
+			img: 'assets/images/supernova.jpg',
+			},
+		{	word: "EXTRATERRESTIAL",
+			img: 'assets/images/extraterrestial.jpg',
+			},
+		{	word: "UNIVERSE",
+			img: 'assets/images/universe.jpg',
+			},
+	]
 
 	// BACKGROUNDS TO BE USED
 	var backgrounds = [
@@ -96,30 +101,30 @@ $(document).ready(function () {
         lettersGuessed = lettersMatched = "";
         countLettersMatched = 0;
         countGuesses = 25;
-
+		
         // UPDATE STATS
         $("#countWins").html(wins);
         $("#countLives").html(lives);
 		$("#countGuesses").html(countGuesses);
         $("#lettersGuessed").html(lettersGuessedArr.join(" "));
 
-        // CHOOSE RANDOM WORD FROM words ARRAY
-        currentWord = words[Math.floor(Math.random() * words.length)];
-				
+        // CHOOSE RANDOM WORD AND ASSOCIATED IMAGE FROM words ARRAY
+		currentWord = words[Math.floor(Math.random() * words.length)];
+		console.log(currentWord);
+		console.log(words.indexOf(currentWord));
+		
+		changeHint();
+		
         // EMPTY ANSWER ARRAY TO STORE LETTERS OF CURRENT WORD
-        for (var i = 0; i < currentWord.length; i++) {
+        for (var i = 0; i < currentWord.word.length; i++) {
             answer[i] = "_";
         }
         $("#currentWord").html(answer.join(" "));
-		
-
-		console.log(hintImages);
-		console.log(words);
     }
 	
 	// UPDATE HINT IMAGE
 	function changeHint() {
-		$("#hintImage").attr("src", hintImages[words.indexOf(currentWord)]);
+		$("#hintImage").attr("src", currentWord.img);
 	};
 	
     // GAME ROUND
@@ -131,29 +136,27 @@ $(document).ready(function () {
             if (letters.indexOf(guess) !== -1) {
                 if ((lettersMatched && lettersMatched.indexOf(guess) !== -1) || (lettersGuessed && lettersGuessed.indexOf(guess) !== -1)) {
                     $("#message").html(messages.alreadyGuessed);
-                } else if (currentWord.indexOf(guess) !== -1) {
-                    for (var i = 0; i < currentWord.length; i++) {
-                        if (currentWord[i] === guess) {
+                } else if (currentWord.word.indexOf(guess) !== -1) {
+                    for (var i = 0; i < currentWord.word.length; i++) {
+                        if (currentWord.word[i] === guess) {
                             answer[i] = guess;
                             $("#currentWord").html(answer.join(" "));
                         }
                     }
-                    for (var i = 0; i < currentWord.length; i++) {
-                        if (currentWord.charAt(i) === guess) {
+                    for (var i = 0; i < currentWord.word.length; i++) {
+                        if (currentWord.word.charAt(i) === guess) {
                             countLettersMatched += 1;
                         }
                     }
                     lettersMatched += guess;
-                    if (countLettersMatched === currentWord.length) {
+                    if (countLettersMatched === currentWord.word.length) {
 						sounds.playCorrect();
                         wins++;
 						$("#message").html(messages.correct + " The mystery was " + currentWord);
                         $("#countWins").html(wins);
 						
-						// NEED TO GET THESE TO MATCH UP
-                        words.splice(words.indexOf(`${currentWord}`), 1);
-						hintImages.splice(hintImages.indexOf(`${currentWord}`), 1);
-						
+						// REMOVE WORD AND IMAGE FROM ARRAY AFTER GUESSED CORRECTLY
+                        words.splice(words.indexOf(currentWord), 1);
 						roundOver();
                     }
                 } else {
@@ -167,6 +170,7 @@ $(document).ready(function () {
                         lives--;
 						sounds.playIncorrect();
 						changeBg();
+						console.log(words);
                         $("#countLives").html(lives);
 						$("#message").html(messages.noMoreGuesses);
 						roundOver();
@@ -195,13 +199,12 @@ $(document).ready(function () {
 			setTimeout(sounds.playYouWin, 2000);
 		} else {
 			newWord();
-			changeHint();
 		}
 	};
 	// END CHECK
 
 	// RELOAD PAGE WHEN BUTTON CLICKED
-	$("#playAgain").click(function() {
+	$(".playAgain").click(function() {
 		location.reload();
 	});
 	
@@ -209,6 +212,8 @@ $(document).ready(function () {
     newWord();
     gameRound();
 });
+
+
 
 
 
