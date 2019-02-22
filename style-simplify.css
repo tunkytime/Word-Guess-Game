@@ -1,0 +1,204 @@
+/* font styles */
+
+body {
+	color: white;
+	font-family: 'Varela Round', sans-serif;
+}
+
+.jumbotron {
+	border-radius: 0px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.background {
+	background-image: url("../images/bg.jpg");
+	background-size: cover;
+	background-color: black;
+}
+
+h1, h2, h3 {
+	font-family: 'Bungee Inline', cursive;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+h4 {
+	font-size: 1.2em;
+}
+
+/* header */
+
+.hangman {
+	position: relative;
+	top: 10px;
+	font-size: 1.5em;
+}
+
+.in-space {
+	position: relative;
+	top: -10px;
+	font-size: 5em;
+}
+
+/* images */
+
+#spaceImg {
+	box-shadow: 0px 0px 30px 10px #730CE8;
+}
+
+#spaceman {
+    position: absolute;
+    z-index: 2;
+    height: 85px;
+    top: 5px;
+    left: 90px;
+}
+
+.blackhole {
+	width: 500px;
+    position: relative;
+    bottom: 100px;
+	z-index: 1;
+	-webkit-animation: rotation 50s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(359deg);
+	}
+}
+
+@-webkit-keyframes mymove {
+  from {height: 100px;}
+  to {height: 0px;}
+}
+
+@-webkit-keyframes win {
+  from {right: 30px;}
+  to {right: 400px;}
+}
+
+@-webkit-keyframes win2 {
+  from {top: 20px;}
+  to {top: 170px;}
+}
+
+#gameover {
+	display: none;
+	margin: 0;
+	padding: 0;
+	background-color: black;
+}
+
+#blackhole-gameover {
+    position: fixed;
+    width: 100%;
+    top: -300px;
+    -webkit-animation: rotation 20s infinite linear
+}
+
+#spaceman-gameover {
+    z-index: 1;
+    display: none;
+    position: absolute;
+    height: 100px;
+    left: 575px;
+    top: 300px;
+    -webkit-animation: rotation 40s, mymove 40s infinite;
+}
+
+#youwin {
+	display: none;
+}
+
+#spacemanwin {
+    z-index: 1;
+    position: absolute;
+    height: 100px;
+    right: 30px;
+    top: 20px;
+    -webkit-animation: win 20s, win2 20s, mymove 20s infinite;
+}
+
+/*#gameplay {
+	display: none;
+}*/
+
+#earthwin {
+	width: 100%;
+	object-fit: cover;
+}
+
+.img-wrapper {
+	position: relative;
+}
+
+.img-overlay {
+	position: absolute;
+	width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+#playagain {
+	border-radius: 0;
+}
+
+/* main section */
+
+.main-section {
+	padding: 10px;
+	color: black;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0px 0px 30px 10px #026CB6;
+}
+
+.row-1 {
+	position: relative;
+}
+
+.wins {
+	color: #026CB6;
+}
+
+.guesses {
+	font-weight: bold;
+}
+
+.card {
+	border-color: #026CB6;
+}
+
+#message {
+	color: #730CE8;
+	font-size: .8em;
+	font-style: italic;
+}
+
+/* modal */
+
+.btn-primary {
+	background-color: #026CB6;
+	border-color: #026CB6;
+}
+
+.btn-secondary {
+	background-color: #730CE8;
+	border-color: #730CE8;
+}
+
+.btn:hover {
+	background-color: black;
+	border-color: black;
+}

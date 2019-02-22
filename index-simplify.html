@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="style-simplify.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Varela+Round" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+    <title>Word Guess Game</title>
+</head>
+
+<body>
+    <div class="jumbotron background">
+
+        <!-- game instructions modal on page load -->
+        <div id="gameModal" class="modal fade text-dark" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center">Welcome to Space!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are in deep space trying to avoid the pull of a massive black hole. Avoid its
+                            gravitational pull by making
+                            discoveries.</p>
+                        <p>You're 100,000 light years away from the black hole right now, let's keep it that way. Every
+                            incorrect guess
+                            moves you 5,000 light years closer. If you run out of guesses on the current discovery,
+                            you'll fall through a
+                            small black hole and lose a life.</p>
+                        <p>Make 10 discoveries to escape!</p>
+                        <p>Are you ready to begin?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Begin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of modal -->
+
+        <!-- start gameplay -->
+        <div id="gameplay">
+            <div class="container">
+                <!-- start header -->
+                <div class="row">
+                    <div class="col-md-7 text-center">
+                        <h1 class="hangman">Hangman<h1>
+                                <h2 class="in-space">In Space</h2>
+                    </div>
+                </div>
+                <!-- end header -->
+
+                <!-- start main section -->
+                <div class="row">
+
+                    <!-- start left column -->
+                    <div class="col-md-7">
+                        <div class="main-section rounded text-center">
+                            <h3>Press any key to begin your journey</h3>
+                            <h4 class="styleWins">Number of Discoveries: <span id="countWins"></h4>
+                            <h4 class="styleLives">Lives Remaining: <span id="countLives"></h4>
+                            <div class="card mx-auto" style="width: 20rem;">
+                                <div class="card-body">
+                                    <h5 class="card-title">Current Mystery</h5>
+                                    <p id="currentWord"></p>
+                                    <p id="message"></p>
+                                </div>
+                            </div>
+                            <br>
+                            <p>Letters Guessed: <span id="lettersGuessed"></p>
+                            <p class="guesses">Distance to Black Hole: <span id="countGuesses"></span>,000 light
+                                years</p>
+                        </div>
+                        <!-- hint image -->
+                        <div class="text-center">
+                            <img id="spaceImg" class="rounded mt-5 mb-5" src="assets/images/supernova.jpg" width="300px">
+                        </div>
+                    </div>
+                    <!-- end left column-->
+
+                    <!-- start right column -->
+                    <div class="col-md-5">
+                        <img id="spaceman" src="assets/images/spaceman.png">
+                        <img class="blackhole" src="assets/images/blackhole.png">
+                    </div>
+                </div>
+                <!-- end main section -->
+            </div>
+            <!-- end container -->
+
+            <!-- sounds to be played -->
+            <!-- correct and incorrect guesses -->
+            <audio id="audioCorrect" src="assets/sounds/deepscan.mp3" preload="auto"></audio>
+            <audio id="audioIncorrect" src="assets/sounds/spacewoosh.wav" preload="auto"></audio>
+            <!-- game over voice and music -->
+            <audio id="voice" src="assets/sounds/gameover.wav" preload="auto"></audio>
+            <audio id="music" src="assets/sounds/spacemusic.wav" type="audio/mpeg" loop preload="auto"></audio>
+            <audio id="yell" src="assets/sounds/yell.wav" preload="auto"></audio>
+            <audio id="winningMusic" src="assets/sounds/win.mp3" type="audio/mpeg" loop preload="auto"></audio>
+        </div>
+        <!-- end of gameplay -->
+
+        <!-- hidden: display when user loses -->
+        <div id="gameover">
+            <div class="img-wrapper">
+                <img id="spaceman-gameover" src="assets/images/spaceman.png">
+                <img id="blackhole-gameover" src="assets/images/blackhole.png">
+                <div class="img-overlay">
+                    <button id="playagain" class="btn btn-primary btn-block" onclick="reload()">Play Again?</button>
+                </div>
+            </div>
+        </div>
+        <!-- end of hidden content -->
+
+        <!-- hidden: display when user wins -->
+        <div id="youwin">
+            <div class="row">
+                <div class="col-md-12">
+                    <div>
+                        <img id="earthwin" src="assets/images/earthbg.jpg">
+                        <img id="spacemanwin" class="run-animation" src="assets/images/spaceman.png">
+                        <div class="img-overlay">
+                            <button id="playagain" class="btn btn-primary btn-block" onclick="reload()">You made it
+                                back to Earth! Play
+                                Again?</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end of hidden content -->
+
+    </div>
+    <!-- end of jumbotron -->
+
+    <script type="text/javascript" src="game-simplify.js"></script>
+</body>
+
+</html>
