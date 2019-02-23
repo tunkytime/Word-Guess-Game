@@ -1,0 +1,199 @@
+/* FONT STYLES */
+body {
+	color: white;
+	font-family: 'Varela Round', sans-serif;
+}
+
+h1, h2, h3 {
+	font-family: 'Bungee Inline', cursive;
+}
+
+h3 {
+	font-size: 1.4em;
+}
+
+h4 {
+	font-size: 1.2em;
+}
+
+.jumbotron {
+	border-radius: 0px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+}
+
+.background {
+	background-image: url("../images/bg.jpg");
+	background-size: cover;
+	background-color: black;
+}
+
+/* HEADER */
+.hangman {
+	position: relative;
+	top: 10px;
+	font-size: 1.5em;
+}
+
+.in-space {
+	position: relative;
+	top: -10px;
+	font-size: 5em;
+}
+
+/* MAIN SECTION */
+.main-section {
+	padding: 10px;
+	color: black;
+	background: rgba(255, 255, 255, 0.9);
+	box-shadow: 0px 0px 30px 10px #026CB6;
+}
+
+.row-1 {
+	position: relative;
+}
+
+.wins {
+	color: #026CB6;
+}
+
+.guesses {
+	font-weight: bold;
+}
+
+.card {
+	border-color: #026CB6;
+}
+
+#message {
+	color: #730CE8;
+	font-size: .8em;
+	font-style: italic;
+}
+
+/* MODAL WITH GAME RULES */
+.btn-primary {
+	background-color: #026CB6;
+	border-color: #026CB6;
+}
+
+.btn-secondary {
+	background-color: #730CE8;
+	border-color: #730CE8;
+}
+
+.btn:hover {
+	background-color: black;
+	border-color: black;
+}
+
+/* IMAGES */
+#hintImage {
+	box-shadow: 0px 0px 30px 10px #730CE8;
+}
+
+.spaceman-gameplay {
+	height: 100px;
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 90px;
+}
+
+.blackhole {
+	width: 500px;
+    position: relative;
+    bottom: 100px;
+	z-index: 1;
+	-webkit-animation: rotation 50s infinite linear;
+}
+
+/* ANIMATIONS */
+@-webkit-keyframes rotation {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(359deg);
+	}
+}
+
+@-webkit-keyframes shrink {
+  from {height: 100px;}
+  to {height: 0px;}
+}
+
+@-webkit-keyframes winMoveLeft {
+  from {right: 30px;}
+  to {right: 400px;}
+}
+
+@-webkit-keyframes winMoveDown {
+  from {top: 20px;}
+  to {top: 170px;}
+}
+
+/* GAME OVER - LOSE */
+#gameover {
+	display: none;
+	margin: 0;
+	padding: 0;
+	background-color: black;
+}
+
+.blackhole-gameover {
+    position: fixed;
+    width: 100%;
+    top: -300px;
+    -webkit-animation: rotation 20s infinite linear
+}
+
+.spaceman-gameover {
+	z-index: 2;
+	height: 100px;
+    display: none;
+    position: absolute;
+    left: 575px;
+    top: 300px;
+    -webkit-animation: rotation 40s, shrink 40s infinite;
+}
+
+/* GAME OVER - WIN */
+#youwin {
+	display: none;
+}
+
+.spaceman-win {
+	z-index: 2;
+	height: 100px;
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    -webkit-animation: winMoveLeft 20s, winMoveDown 20s, shrink 20s infinite;
+}
+
+#earthwin {
+	width: 100%;
+	object-fit: cover;
+}
+
+/* PLAY AGAIN BUTTON */
+.img-wrapper {
+	position: relative;
+}
+
+.img-overlay {
+	position: absolute;
+	width: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+}
+
+.playAgain {
+	border-radius: 0;
+}
