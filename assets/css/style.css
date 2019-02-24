@@ -47,6 +47,19 @@ h4 {
 	font-size: 5em;
 }
 
+.theme-button {
+	margin: 5px 5px 0 0;
+}
+
+.pause-button {
+	margin: 5px 5px 0 0;
+}
+
+.play-icon,
+.pause-icon {
+	height: 20px;
+}
+
 /* MAIN SECTION */
 .main-section {
 	padding: 10px;
@@ -176,7 +189,7 @@ h4 {
 	display: none;
 	position: relative;
 	left: 50%;
-	-webkit-animation: rotation 80s, shrink 80s infinite;
+	-webkit-animation: rotation 120s, shrink 120s infinite;
 	float: left;
 	top: 375px;
 }
