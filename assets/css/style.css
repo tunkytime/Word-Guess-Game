@@ -4,7 +4,9 @@ body {
 	font-family: 'Varela Round', sans-serif;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
 	font-family: 'Bungee Inline', cursive;
 }
 
@@ -97,17 +99,17 @@ h4 {
 }
 
 .spaceman-gameplay {
-	height: 100px;
-    position: absolute;
-    z-index: 1;
-    top: 5px;
-    left: 90px;
+	height: 85px;
+	position: absolute;
+	z-index: 1;
+	top: 5px;
+	left: 90px;
 }
 
 .blackhole {
 	width: 500px;
-    position: relative;
-    bottom: 100px;
+	position: relative;
+	bottom: 100px;
 	z-index: 1;
 	-webkit-animation: rotation 50s infinite linear;
 }
@@ -117,24 +119,40 @@ h4 {
 	from {
 		-webkit-transform: rotate(0deg);
 	}
+
 	to {
 		-webkit-transform: rotate(359deg);
 	}
 }
 
 @-webkit-keyframes shrink {
-  from {height: 100px;}
-  to {height: 0px;}
+	from {
+		height: 85px;
+	}
+
+	to {
+		height: 0px;
+	}
 }
 
 @-webkit-keyframes winMoveLeft {
-  from {right: 30px;}
-  to {right: 400px;}
+	from {
+		right: 30px;
+	}
+
+	to {
+		right: 400px;
+	}
 }
 
 @-webkit-keyframes winMoveDown {
-  from {top: 20px;}
-  to {top: 170px;}
+	from {
+		top: 20px;
+	}
+
+	to {
+		top: 170px;
+	}
 }
 
 /* GAME OVER - LOSE */
@@ -146,20 +164,21 @@ h4 {
 }
 
 .blackhole-gameover {
-    position: fixed;
-    width: 100%;
-    top: -300px;
-    -webkit-animation: rotation 20s infinite linear
+	position: fixed;
+	width: 100%;
+	top: -320px;
+	-webkit-animation: rotation 20s infinite linear
 }
 
 .spaceman-gameover {
 	z-index: 2;
-	height: 100px;
-    display: none;
-    position: absolute;
-    left: 575px;
-    top: 300px;
-    -webkit-animation: rotation 40s, shrink 40s infinite;
+	height: 85px;
+	display: none;
+	position: relative;
+	left: 50%;
+	-webkit-animation: rotation 80s, shrink 80s infinite;
+	float: left;
+	top: 375px;
 }
 
 /* GAME OVER - WIN */
@@ -169,11 +188,11 @@ h4 {
 
 .spaceman-win {
 	z-index: 2;
-	height: 100px;
-    position: absolute;
-    right: 30px;
-    top: 20px;
-    -webkit-animation: winMoveLeft 20s, winMoveDown 20s, shrink 20s infinite;
+	height: 85px;
+	position: absolute;
+	right: 30px;
+	top: 20px;
+	-webkit-animation: winMoveLeft 40s, winMoveDown 40s, shrink 40s infinite;
 }
 
 #earthwin {
@@ -189,9 +208,9 @@ h4 {
 .img-overlay {
 	position: absolute;
 	width: 100%;
-    top: 0;
-    left: 0;
-    text-align: center;
+	top: 0;
+	left: 0;
+	text-align: center;
 }
 
 .playAgain {
