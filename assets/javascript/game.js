@@ -144,6 +144,9 @@ $(document).ready(function () {
 			if (lives === 0) {
 				$("#gameplay").css("display", "none");
 				$("#gameover").css("display", "block");
+				$("body").css("background-repeat", "no repeat");
+				$("body").css("background-size", "cover");
+				$("body").css("background-image", "url('assets/images/blackhole-bg.jpg')");
 				$(".spaceman-gameover").css("display", "block");
 				themeSong.pause();
 				playVoice.play();
@@ -151,6 +154,9 @@ $(document).ready(function () {
 			} else if (words.length === 0) {
 				$("#gameplay").css("display", "none");
 				$("#youwin").css("display", "block");
+				$("body").css("background-repeat", "no repeat");
+				$("body").css("background-size", "cover");
+				$("body").css("background-image", "url('assets/images/earth.png')");
 				$(".spaceman-win").css("display", "block");
 				themeSong.pause();
 				setTimeout(this.winMusic, 50);
@@ -163,12 +169,12 @@ $(document).ready(function () {
 				left: "+=100",
 				top: "+=105",
 				opacity: "0"
-			}, 200, function () {
+			}, 300, function () {
 				$(this).removeAttr("style");
 			});
 		},
 		changeBg: function () {
-			$(".background").css("background-image", "url(" + backgrounds[Math.floor(Math.random() * backgrounds.length)] + ")");
+			$("body").css("background-image", "url(" + backgrounds[Math.floor(Math.random() * backgrounds.length)] + ")");
 
 		},
 		gameRound: function () {

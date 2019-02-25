@@ -2,6 +2,9 @@
 body {
 	color: white;
 	font-family: 'Varela Round', sans-serif;
+	background: black;
+	background-image: url("../images/bg.jpg");
+
 }
 
 h1,
@@ -32,6 +35,7 @@ h4 {
 	background-image: url("../images/bg.jpg");
 	background-size: cover;
 	background-color: black;
+	margin-bottom: 0;
 }
 
 /* HEADER */
@@ -107,24 +111,31 @@ h4 {
 }
 
 /* IMAGES */
+
+.image-container {
+	margin-top: 4%;
+}
+
 #hintImage {
-	box-shadow: 0px 0px 30px 10px #730CE8;
+	/*box-shadow: 0px 0px 20px 5px #730CE8;*/
+	border: 1px solid #730CE8;
 }
 
 .spaceman-gameplay {
 	height: 85px;
 	position: absolute;
 	z-index: 1;
-	top: 5px;
-	left: 90px;
+	top: 20%;
+	left: 20%;
 }
 
 .blackhole {
-	width: 500px;
-	position: relative;
-	bottom: 100px;
-	z-index: 1;
-	-webkit-animation: rotation 50s infinite linear;
+	height: 460px;
+    position: relative;
+    top: 17%;
+    left: 15%;
+	opacity: 0.9;
+    -webkit-animation: rotation 50s infinite linear;
 }
 
 /* ANIMATIONS */
@@ -134,7 +145,7 @@ h4 {
 	}
 
 	to {
-		-webkit-transform: rotate(359deg);
+		-webkit-transform: rotate(360deg);
 	}
 }
 
@@ -171,27 +182,23 @@ h4 {
 /* GAME OVER - LOSE */
 #gameover {
 	display: none;
-	margin: 0;
-	padding: 0;
-	background-color: black;
 }
 
 .blackhole-gameover {
-	position: fixed;
 	width: 100%;
-	top: -320px;
+	opacity: 0.95;
+	position: relative;
+	bottom: 280px;
 	-webkit-animation: rotation 20s infinite linear
 }
 
 .spaceman-gameover {
 	z-index: 2;
 	height: 85px;
-	display: none;
 	position: relative;
 	left: 50%;
-	-webkit-animation: rotation 120s, shrink 120s infinite;
-	float: left;
-	top: 375px;
+	-webkit-animation: rotation 60s, shrink 60s infinite;
+	top: 340px;
 }
 
 /* GAME OVER - WIN */
@@ -205,7 +212,7 @@ h4 {
 	position: absolute;
 	right: 30px;
 	top: 20px;
-	-webkit-animation: winMoveLeft 40s, winMoveDown 40s, shrink 40s infinite;
+	-webkit-animation: winMoveLeft 60s, winMoveDown 60s, shrink 60s infinite;
 }
 
 #earthwin {
