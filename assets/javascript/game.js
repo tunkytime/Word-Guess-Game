@@ -12,42 +12,52 @@ var guess = "";
 var words = [{
 		word: "COMET",
 		img: 'assets/images/comet.jpg',
+		hint: "...a small Solar System body...",
 	},
 	{
 		word: "ANDROMEDA",
 		img: 'assets/images/andromeda.jpg',
+		hint: "...nearest galaxy to Milky Way...",
 	},
 	{
 		word: "GALAXY",
 		img: 'assets/images/galaxy.jpg',
+		hint: "...stars held together by gravity...",
 	},
 	{
 		word: "INTERSTELLAR",
 		img: 'assets/images/interstellar.jpg',
+		hint: "...situated between stars...",
 	},
 	{
 		word: "COSMOS",
 		img: 'assets/images/cosmos.jpg',
+		hint: "...harmonious universe...",
 	},
 	{
 		word: "NEBULA",
 		img: 'assets/images/nebula.jpg',
+		hint: "...cloud of gas in outer space...",
 	},
 	{
 		word: "NOVA",
 		img: 'assets/images/nova.jpg',
+		hint: "...increase in brightness...",
 	},
 	{
 		word: "SUPERNOVA",
 		img: 'assets/images/supernova.jpg',
+		hint: "...catastrophic explosion...",
 	},
 	{
 		word: "EXTRATERRESTIAL",
 		img: 'assets/images/extraterrestial.jpg',
+		hint: "...not from Earth...",
 	},
 	{
 		word: "UNIVERSE",
 		img: 'assets/images/universe.jpg',
+		hint: "...all space and time...",
 	},
 ]
 
@@ -57,7 +67,6 @@ var backgrounds = [
 	'assets/images/bg3.jpg',
 	'assets/images/bg4.jpg',
 	'assets/images/bg5.jpg',
-	'assets/images/bg6.jpg',
 ];
 
 // MESSAGES
@@ -79,10 +88,10 @@ playIncorrect.setAttribute("src", "assets/sounds/spacewoosh.wav");
 var playVoice = document.createElement("audio");
 playVoice.setAttribute("src", "assets/sounds/lose-voice.wav");
 
-var playYell = document.createElement("audio");
-playYell.setAttribute("src", "assets/sounds/yell.wav");
+var playLanded = document.createElement("audio");
+playLanded.setAttribute("src", "assets/sounds/landed.mp3");
 
-// Gets Link for Theme Song
+// SONG
 var themeSong = document.createElement("audio");
 themeSong.setAttribute("src", "assets/sounds/theme.mp3");
 
@@ -94,16 +103,25 @@ $(".theme-button").on("click", function () {
 	themeSong.play();
 });
 
-// Theme Button
 $(".pause-button").on("click", function () {
 	themeSong.pause();
 });
+
+// BUTTONS
+function playAgain () {
+	$(".playAgain").css("display", "block");
+};
+
+// Play Again Button
 
 $(document).ready(function () {
 
 	var game = {
 		changeHint: function () {
 			$("#hintImage").attr("src", currentWord.img);
+		},
+		hintText: function () {
+			$("#hintText").text(currentWord.hint);
 		},
 		newWord: function () {
 			answer = [];
@@ -121,6 +139,7 @@ $(document).ready(function () {
 			// CHOOSE RANDOM WORD
 			currentWord = words[Math.floor(Math.random() * words.length)];
 			this.changeHint();
+			this.hintText();
 
 			// EMPTY ANSWER ARRAY TO STORE LETTERS
 			for (var i = 0; i < currentWord.word.length; i++) {
@@ -134,32 +153,39 @@ $(document).ready(function () {
 			x.setAttribute("loop", "true");
 			x.play();
 		},
+		playVoice: function () {
+			var x = document.createElement("audio");
+			x.setAttribute("src", "assets/sounds/lose-voice.wav");
+			x.play();
+		},
 		winMusic: function () {
 			var x = document.createElement("audio");
 			x.setAttribute("src", "assets/sounds/win-music.mp3");
-			x.setAttribute("loop", "true");
 			x.play();
 		},
 		roundOver: function () {
 			if (lives === 0) {
 				$("#gameplay").css("display", "none");
-				$("#gameover").css("display", "block");
+				$("#gameover").fadeIn(3000);
+				$(".playAgain").fadeIn(3000);
+				$(".spaceman-gameover").css("display", "block");
 				$("body").css("background-repeat", "no repeat");
 				$("body").css("background-size", "cover");
 				$("body").css("background-image", "url('assets/images/blackhole-bg.jpg')");
-				$(".spaceman-gameover").css("display", "block");
 				themeSong.pause();
-				playVoice.play();
+				this.playVoice();
 				setTimeout(this.loseMusic, 300);
 			} else if (words.length === 0) {
 				$("#gameplay").css("display", "none");
-				$("#youwin").css("display", "block");
+				$("body").css("background-image", "url('assets/images/earth.png')");
 				$("body").css("background-repeat", "no repeat");
 				$("body").css("background-size", "cover");
-				$("body").css("background-image", "url('assets/images/earth.png')");
+				$("#youwin").css("display", "block");
 				$(".spaceman-win").css("display", "block");
 				themeSong.pause();
-				setTimeout(this.winMusic, 50);
+				playLanded.play();
+				setTimeout(this.winMusic, 300);
+				$(".playAgain").fadeIn(8000);
 			} else {
 				this.newWord();
 			}

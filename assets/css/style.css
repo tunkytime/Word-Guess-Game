@@ -4,7 +4,6 @@ body {
 	font-family: 'Varela Round', sans-serif;
 	background: black;
 	background-image: url("../images/bg.jpg");
-
 }
 
 h1,
@@ -21,6 +20,12 @@ h4 {
 	font-size: 1.2em;
 }
 
+.hints {
+	padding-top: 7%;
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
 .jumbotron {
 	border-radius: 0px;
 	margin: 0;
@@ -31,11 +36,9 @@ h4 {
 	left: 0;
 }
 
-.background {
-	background-image: url("../images/bg.jpg");
-	background-size: cover;
-	background-color: black;
-	margin-bottom: 0;
+#hintText {
+	font-size: .7em;
+	color: #730CE8;
 }
 
 /* HEADER */
@@ -130,7 +133,7 @@ h4 {
 }
 
 .blackhole {
-	height: 460px;
+	height: 417px;
     position: relative;
     top: 17%;
     left: 15%;
@@ -161,17 +164,27 @@ h4 {
 
 @-webkit-keyframes winMoveLeft {
 	from {
-		right: 30px;
+		right: 120px;
 	}
 
 	to {
-		right: 400px;
+		right: 500px;
 	}
 }
 
 @-webkit-keyframes winMoveDown {
 	from {
-		top: 20px;
+		top: 30px;
+	}
+
+	to {
+		top: 170px;
+	}
+}
+
+@-webkit-keyframes star {
+	from {
+		top: 30px;
 	}
 
 	to {
@@ -210,9 +223,9 @@ h4 {
 	z-index: 2;
 	height: 85px;
 	position: absolute;
-	right: 30px;
-	top: 20px;
-	-webkit-animation: winMoveLeft 60s, winMoveDown 60s, shrink 60s infinite;
+	right: 120px;
+	top: 30px;
+	-webkit-animation: winMoveLeft 90s, winMoveDown 90s, shrink 90s infinite;
 }
 
 #earthwin {
@@ -234,5 +247,20 @@ h4 {
 }
 
 .playAgain {
+	width: 100%;
 	border-radius: 0;
+	display: none;
+}
+
+#gameplay{
+/*display: none;*/
+}
+
+#video {
+	display: none;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	min-width: 100%; 
+	min-height: 100%;
 }

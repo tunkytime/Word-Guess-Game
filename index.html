@@ -30,14 +30,15 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>You are in deep space trying to avoid the pull of a massive black hole 75,000 light years
+					<p>You are tyring to avoid the pull of a massive black hole 75,000 light years
 						away. Avoid its
 						gravitational pull by making
 						discoveries.</p>
 					<p>Along your journey, you will encounter smaller black holes that are only 25,000 light years
-						away. When you guess the <em>Current Mystery</em> incorrectly, the black hole pulls your
-						5,000 light years closer. If you run out of guesses, you'll be pulled into another
-						dimension and lose a life!</p>
+						away.</p>
+					<p>If you guess incorrectly, the black hole pulls you
+						5,000 light years closer. Be careful, if you run out of guesses you'll be pulled into another
+						dimension and lose a life.</p>
 					<p><strong>Make 10 discoveries to escape!</strong></p>
 				</div>
 				<div class="modal-footer">
@@ -59,7 +60,7 @@
 		</div>
 		<div class="container">				
 			<div class="row">
-				<div class="col-6 text-center">
+				<div class="col-7 text-center">
 					<div class="row">
 						<div class="col-12">
 							<h1 class="hangman">Hangman<h1>
@@ -71,7 +72,7 @@
 									<div class="col-8">
 										<h4>Number of Discoveries: <span id="countWins"></span></h4>
 										<h4>Lives Remaining: <span id="countLives"></span></h4>
-										<div class="card text-center" style="height: 150px">
+										<div class="card text-center mx-auto" style="height: 150px; width: 350px;">
 											<div class="card-body">
 												<h5 class="card-title">Current Mystery</h5>
 												<p id="currentWord"></p>
@@ -80,9 +81,13 @@
 										</div>
 									</div>
 									
-									<div class="col-4 image-container">
-										<p><em>Hint Image</em><p>
-										<img id="hintImage" class="rounded float-right" src="assets/images/supernova.jpg" height="150px">
+									<div class="col-4">
+										<p class="hints">
+										Hint
+										<br>
+										<span id="hintText">hello</span>
+										</p>
+										<img id="hintImage" class="rounded" src="assets/images/supernova.jpg" height="150px">
 									</div>
 
 									<div class="w-100"></div>
@@ -97,7 +102,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-6">
+				<div class="col-5">
 					<img class="blackhole" src="assets/images/blackhole.png">
 					<img class="spaceman-gameplay" src="assets/images/spaceman.png">
 				</div>
@@ -109,27 +114,31 @@
         <!-- hidden: display when user loses -->
         <div id="gameover">
             <div class="img-wrapper">
-                <img class="spaceman-gameover" src="assets/images/spaceman.png">
                 <div class="img-overlay">
-                    <button class="playAgain btn btn-primary btn-block">You couldn't escape the black hole! Try Again?</button>
+                    <button class="playAgain btn btn-secondary btn-block">You couldn't escape the black hole! Try Again?</button>
                 </div>
+				<img class="spaceman-gameover" src="assets/images/spaceman.png">
             </div>
         </div>
         <!-- end of hidden content -->
+		
+		<!-- cut scene -->
+		<video autoplay muted loop id="video">
+			<source src="assets/videos/warp.mp4" type="video/mp4">
+		</video>
+		<!-- end cut scene -->
 
         <!-- hidden: display when user wins -->
         <div id="youwin">
             <div class="row">
-                <div class="col-md-12">
-                    <div>
-                        <img class="spaceman-win" class="run-animation" src="assets/images/spaceman.png">
-                        <div class="img-overlay">
-                            <button class="playAgain btn btn-primary btn-block">You made it
-                                back to Earth! Play
-                                Again?</button>
-                        </div>
-                    </div>
-                </div>
+				<div>
+					<div class="img-overlay">
+						<button class="playAgain btn btn-primary btn-block">Congratulations! You made it
+						back to Earth! Play
+						Again?</button>
+					</div>
+					<img class="spaceman-win" src="assets/images/spaceman.png">
+				</div>
             </div>
         </div>
         <!-- end of hidden content -->
