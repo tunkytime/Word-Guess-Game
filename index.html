@@ -113,6 +113,13 @@
 
         <!-- hidden: display when user loses -->
         <div id="gameover">
+	
+			<!-- cut scene -->
+			<video autoplay muted class="videoLose">
+				<source src="assets/videos/warp.mp4" type="video/mp4">
+			</video>
+			<!-- end cut scene -->
+		
             <div class="img-wrapper">
                 <div class="img-overlay">
                     <button class="playAgain btn btn-secondary btn-block">You couldn't escape the black hole! Try Again?</button>
@@ -121,15 +128,16 @@
             </div>
         </div>
         <!-- end of hidden content -->
-		
-		<!-- cut scene -->
-		<video autoplay muted loop id="video">
-			<source src="assets/videos/warp.mp4" type="video/mp4">
-		</video>
-		<!-- end cut scene -->
 
         <!-- hidden: display when user wins -->
         <div id="youwin">
+		
+			<!-- cut scene -->
+			<video autoplay muted class="videoWin">
+				<source src="assets/videos/warp.mp4" type="video/mp4">
+			</video>
+			<!-- end cut scene -->
+			
             <div class="row">
 				<div>
 					<div class="img-overlay">

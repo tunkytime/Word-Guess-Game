@@ -91,30 +91,27 @@ playVoice.setAttribute("src", "assets/sounds/lose-voice.wav");
 var playLanded = document.createElement("audio");
 playLanded.setAttribute("src", "assets/sounds/landed.mp3");
 
-// SONG
 var themeSong = document.createElement("audio");
 themeSong.setAttribute("src", "assets/sounds/theme.mp3");
 
-$(".begin-button").on("click", function () {
-	themeSong.play();
-});
-
-$(".theme-button").on("click", function () {
-	themeSong.play();
-});
-
-$(".pause-button").on("click", function () {
-	themeSong.pause();
-});
-
-// BUTTONS
-function playAgain () {
-	$(".playAgain").css("display", "block");
-};
-
-// Play Again Button
-
 $(document).ready(function () {
+	
+	// BUTTONS
+	$(".begin-button").on("click", function () {
+		themeSong.play();
+	});
+
+	$(".theme-button").on("click", function () {
+		themeSong.play();
+	});
+
+	$(".pause-button").on("click", function () {
+		themeSong.pause();
+	});
+
+	function playAgain () {
+		$(".playAgain").css("display", "block");
+	};
 
 	var game = {
 		changeHint: function () {
@@ -163,29 +160,57 @@ $(document).ready(function () {
 			x.setAttribute("src", "assets/sounds/win-music.mp3");
 			x.play();
 		},
+		playLanded: function () {
+			var x = document.createElement("audio");
+			x.setAttribute("src", "assets/sounds/landed.mp3");
+			x.play();
+		},
+		playWarp: function () {
+			var x = document.createElement("audio");
+			x.setAttribute("src", "assets/sounds/warp.wav");
+			x.play();
+		},
+		hideVideoLose: function () {
+			$(".videoLose").css("display", "none");
+		},
+		hideVideoWin: function () {
+			$(".videoWin").css("display", "none");
+		},
+		showBackground: function () {
+			$("body").css("background-repeat", "no repeat");
+			$("body").css("background-size", "cover");
+			$("body").css("background-image", "url('assets/images/blackhole-bg.jpg')");
+		},
+		showBackgroundEarth: function () {
+			$("body").css("background-image", "url('assets/images/earth.png')");
+			$("body").css("background-repeat", "no repeat");
+			$("body").css("background-size", "cover");
+		},
 		roundOver: function () {
 			if (lives === 0) {
+				this.playWarp();
+				$("body").css("background", "black");
 				$("#gameplay").css("display", "none");
-				$("#gameover").fadeIn(3000);
-				$(".playAgain").fadeIn(3000);
+				setTimeout(this.hideVideoLose, 3900);
+				setTimeout(this.showBackground, 3000);
 				$(".spaceman-gameover").css("display", "block");
-				$("body").css("background-repeat", "no repeat");
-				$("body").css("background-size", "cover");
-				$("body").css("background-image", "url('assets/images/blackhole-bg.jpg')");
+				$("#gameover").fadeIn(3000);
+				$(".playAgain").fadeIn(12000);
 				themeSong.pause();
-				this.playVoice();
-				setTimeout(this.loseMusic, 300);
+				setTimeout(this.playVoice, 50);
+				setTimeout(this.loseMusic, 400);
 			} else if (words.length === 0) {
+				this.playWarp();
+				$("body").css("background", "black");
 				$("#gameplay").css("display", "none");
-				$("body").css("background-image", "url('assets/images/earth.png')");
-				$("body").css("background-repeat", "no repeat");
-				$("body").css("background-size", "cover");
-				$("#youwin").css("display", "block");
+				setTimeout(this.hideVideoWin, 4000);
+				setTimeout(this.showBackgroundEarth, 2000);
 				$(".spaceman-win").css("display", "block");
+				$("#youwin").fadeIn(2000);
+				$(".playAgain").fadeIn(10000);
 				themeSong.pause();
-				playLanded.play();
-				setTimeout(this.winMusic, 300);
-				$(".playAgain").fadeIn(8000);
+				setTimeout(this.playLanded, 3200);
+				setTimeout(this.winMusic, 3500);
 			} else {
 				this.newWord();
 			}
@@ -246,7 +271,6 @@ $(document).ready(function () {
 							playIncorrect.play();
 							game.blackHole();
 							game.changeBg();
-							console.log(words);
 							$("#countLives").html(lives);
 							$("#message").html(messages.noMoreGuesses);
 							game.roundOver();
