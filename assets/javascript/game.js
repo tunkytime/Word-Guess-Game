@@ -95,7 +95,7 @@ var themeSong = document.createElement("audio");
 themeSong.setAttribute("src", "assets/sounds/theme.mp3");
 
 $(document).ready(function () {
-	
+
 	// BUTTONS
 	$(".begin-button").on("click", function () {
 		themeSong.play();
@@ -109,7 +109,7 @@ $(document).ready(function () {
 		themeSong.pause();
 	});
 
-	function playAgain () {
+	function playAgain() {
 		$(".playAgain").css("display", "block");
 	};
 
@@ -177,7 +177,11 @@ $(document).ready(function () {
 			$(".videoWin").css("display", "none");
 		},
 		showBackground: function () {
+			$("html").css("height", "100%");
+			$("body").css("height", "100%");
+			$("body").css("background-position", "center center");
 			$("body").css("background-repeat", "no repeat");
+			$("body").css("background-attachement", "fixed");
 			$("body").css("background-size", "cover");
 			$("body").css("background-image", "url('assets/images/blackhole-bg.jpg')");
 		},
